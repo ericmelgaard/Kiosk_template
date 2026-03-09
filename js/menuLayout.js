@@ -551,6 +551,9 @@ var IMSintegration;
         MenuLayout.prototype.showNutritionModal = function (item) {
             var _this = this;
 
+            var ingredientsArray = Array.isArray(item.ingredients) ? item.ingredients : (item.ingredients ? [item.ingredients] : []);
+            var allergensArray = Array.isArray(item.allergens) ? item.allergens : (item.allergens ? [item.allergens] : []);
+
             var modalData = {
                 name: item.name || item.comboName || item.menuItemName || 'Unknown Item',
                 servingSize: item.servingSize || 'Not specified',
@@ -570,9 +573,9 @@ var IMSintegration;
                 calcium: item.calcium || 0,
                 iron: item.iron || 0,
                 potassium: item.potassium || 0,
-                ingredients: (item.ingredients || []).join(', '),
-                allergens: (item.allergens || []).join(', '),
-                hasAllergens: item.allergens && item.allergens.length > 0,
+                ingredients: ingredientsArray.join(', '),
+                allergens: allergensArray.join(', '),
+                hasAllergens: allergensArray.length > 0,
                 icons: item.icons || []
             };
 
