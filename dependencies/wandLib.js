@@ -83,6 +83,7 @@ function setupOptionsMenu() {
     // Show custom menu at mouse position (viewport coordinates, unaffected by scale)
     function showCustomMenu(x, y) {
         // Get current scale from body transform
+        if(!allowScale){return}
         let scale = 1;
         const transform = document.body.style.transform;
         if (transform && transform.startsWith('scale(')) {
