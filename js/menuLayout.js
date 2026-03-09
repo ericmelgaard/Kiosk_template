@@ -727,6 +727,17 @@ var IMSintegration;
             $(document).on('click', '#scroll-top-btn', function() {
                 $('#kiosk-content').animate({ scrollTop: 0 }, 300);
             });
+
+            $('#kiosk-content').on('scroll', function() {
+                const scrollTop = $(this).scrollTop();
+                if (scrollTop > 100) {
+                    $('#scroll-top-btn').fadeIn(200);
+                } else {
+                    $('#scroll-top-btn').fadeOut(200);
+                }
+            });
+
+            $('#scroll-top-btn').hide();
         };
 
         MenuLayout.stationCardTemplate = `
