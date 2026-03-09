@@ -23,6 +23,8 @@ var menuKey = "jeOl2jyXzotZWQa7ROvrIpOM4M473WT5Y1g0wDP1tr7Oq0lXzXUq0yNMAO13FK6jj
 var allowMenusOffline = false;
 //for legacy brands with rotated content
 var assetRotation = 0; //in degrees 0 or 270
+//allow scaling to standar sizes
+var allowScale = false;
 //webtrtion config
 var staticBusinessUnit = "";
 var staticLocation = "";
