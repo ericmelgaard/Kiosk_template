@@ -776,102 +776,104 @@ var IMSintegration;
                 <button class="close-modal">&times;</button>
             </div>
             <div class="nutrition-label">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
-                    <span style="color: #3b82f6; font-size: 18px; font-weight: 600;">$0.00</span>
-                    <span style="color: #94a3b8;">{{calories}} calories</span>
-                    <span style="color: #94a3b8;">{{servingSize}}</span>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: #3b82f6; font-size: 16px; font-weight: 600;">$0.00</span>
+                        <span style="color: #94a3b8; font-size: 14px;">{{calories}} calories</span>
+                        <span style="color: #94a3b8; font-size: 14px;">{{servingSize}}</span>
+                    </div>
+                    {{#icons.length}}
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                    {{#icons}}
+                        <img src="{{fileName}}" style="width: 32px; height: 32px;" title="{{name}}" onerror="this.onerror=null;this.style.display='none';">
+                    {{/icons}}
+                    </div>
+                    {{/icons.length}}
                 </div>
-                {{#icons.length}}
-                <div class="dietary-icons">
-                {{#icons}}
-                    <img src="{{fileName}}" class="nutrition-icon" title="{{name}}" onerror="this.onerror=null;this.style.display='none';">
-                {{/icons}}
-                </div>
-                {{/icons.length}}
                 {{#ingredients}}
-                <h3>Ingredients</h3>
-                <div class="ingredients-section">
+                <h3 style="color: #3b82f6; font-size: 14px; font-weight: 600; margin: 16px 0 8px 0;">Ingredients</h3>
+                <div style="color: #cbd5e1; font-size: 13px; line-height: 1.5; border-bottom: 1px solid #334155; padding-bottom: 12px;">
                     {{ingredients}}
                 </div>
                 {{/ingredients}}
                 {{#hasAllergens}}
-                <h3 style="margin-top: 24px;">Allergens</h3>
-                <div class="allergens-section">
+                <h3 style="color: #3b82f6; font-size: 14px; font-weight: 600; margin: 16px 0 8px 0;">Allergens</h3>
+                <div style="color: #cbd5e1; font-size: 13px; line-height: 1.5; border-bottom: 1px solid #334155; padding-bottom: 12px;">
                     {{allergens}}
                 </div>
                 {{/hasAllergens}}
-                <h3 style="margin-top: 24px;">Nutrition Facts</h3>
-                <div style="background: white; border-radius: 8px; padding: 16px; margin-top: 12px;">
-                    <div style="font-size: 32px; font-weight: 700; color: #000; margin-bottom: 8px;">Nutrition Facts</div>
-                    <div style="border-bottom: 10px solid #000; padding-bottom: 4px; margin-bottom: 4px; font-size: 14px; color: #000;">
+                <h3 style="color: #3b82f6; font-size: 14px; font-weight: 600; margin: 16px 0 8px 0;">Nutrition Facts</h3>
+                <div style="background: white; border-radius: 4px; padding: 12px; margin-top: 8px;">
+                    <div style="font-size: 24px; font-weight: 700; color: #000; margin-bottom: 4px;">Nutrition Facts</div>
+                    <div style="border-bottom: 8px solid #000; padding-bottom: 2px; margin-bottom: 2px; font-size: 12px; color: #000;">
                         Serving Size {{servingSize}}
                     </div>
-                    <div style="border-bottom: 5px solid #000; padding: 6px 0; margin-bottom: 6px;">
+                    <div style="border-bottom: 4px solid #000; padding: 4px 0; margin-bottom: 4px;">
                         <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                            <span style="font-size: 28px; font-weight: 700; color: #000;">Calories</span>
-                            <span style="font-size: 42px; font-weight: 700; color: #000;">{{calories}}</span>
+                            <span style="font-size: 22px; font-weight: 700; color: #000;">Calories</span>
+                            <span style="font-size: 34px; font-weight: 700; color: #000;">{{calories}}</span>
                         </div>
                     </div>
-                    <div style="text-align: right; font-size: 12px; font-weight: 700; border-bottom: 4px solid #000; padding: 4px 0; color: #000;">% Daily Value*</div>
-                    <div style="color: #000; font-size: 14px;">
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                    <div style="text-align: right; font-size: 10px; font-weight: 700; border-bottom: 3px solid #000; padding: 3px 0; color: #000;">% Daily Value*</div>
+                    <div style="color: #000; font-size: 12px;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span><strong>Total Fat</strong> {{totalFat}}g</span>
                             <span><strong>{{totalFatDV}}%</strong></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0 4px 16px; border-bottom: 1px solid #999;">
                             <span>Saturated Fat {{saturatedFat}}g</span>
                             <span><strong>{{saturatedFatDV}}%</strong></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0 4px 16px; border-bottom: 1px solid #999;">
                             <span><em>Trans</em> Fat {{transFat}}g</span>
                             <span></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span><strong>Cholesterol</strong> {{cholesterol}}mg</span>
                             <span><strong>{{cholesterolDV}}%</strong></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span><strong>Sodium</strong> {{sodium}}mg</span>
                             <span><strong>{{sodiumDV}}%</strong></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span><strong>Total Carbohydrate</strong> {{totalCarbohydrate}}g</span>
                             <span><strong>{{totalCarbohydrateDV}}%</strong></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0 4px 16px; border-bottom: 1px solid #999;">
                             <span>Dietary Fiber {{dietaryFiber}}g</span>
                             <span><strong>{{dietaryFiberDV}}%</strong></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0 4px 16px; border-bottom: 1px solid #999;">
                             <span>Total Sugars {{totalSugars}}g</span>
                             <span></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 40px; border-bottom: 1px solid #999; font-size: 13px;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0 4px 32px; border-bottom: 1px solid #999; font-size: 11px;">
                             <span>Includes {{addedSugars}}g Added Sugars</span>
                             <span></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 8px solid #000;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 6px solid #000;">
                             <span><strong>Protein</strong> {{protein}}g</span>
                             <span></span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span>Vitamin D {{vitaminD}}mcg</span>
                             <span>{{vitaminDDV}}%</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span>Calcium {{calcium}}mg</span>
                             <span>{{calciumDV}}%</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #999;">
                             <span>Iron {{iron}}mg</span>
                             <span>{{ironDV}}%</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 4px solid #000;">
+                        <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 3px solid #000;">
                             <span>Potassium {{potassium}}mg</span>
                             <span>{{potassiumDV}}%</span>
                         </div>
-                        <div style="font-size: 11px; padding-top: 8px;">
-                            * Percent Daily Values are based on a 2,000 calorie diet.
+                        <div style="font-size: 10px; padding-top: 6px; line-height: 1.3;">
+                            * Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.
                         </div>
                     </div>
                 </div>
