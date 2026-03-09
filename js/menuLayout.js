@@ -358,8 +358,8 @@ var IMSintegration;
                     ingredients: ["Mixed greens", "Tomatoes", "Cucumbers", "Carrots", "Ranch dressing"],
                     allergens: ["Milk", "Egg"],
                     icons: [
-                        { name: "Vegetarian", fileName: "resources/icon_vegetarian.svg" },
-                        { name: "Gluten Free", fileName: "resources/icon_glutenfree.svg" }
+                        { name: "Vegetarian", fileName: "media/icon_vegetarian.png" },
+                        { name: "Gluten Free", fileName: "media/icon_withoutgluten.png" }
                     ]
                 },
                 {
@@ -411,7 +411,7 @@ var IMSintegration;
                     potassium: 280,
                     ingredients: ["Pizza dough", "Tomato sauce", "Mozzarella cheese", "Bell peppers", "Onions", "Mushrooms", "Olives"],
                     icons: [
-                        { name: "Vegetarian", fileName: "resources/icon_vegetarian.svg" }
+                        { name: "Vegetarian", fileName: "media/icon_vegetarian.png" }
                     ],
                     allergens: ["Wheat", "Milk"]
                 },
