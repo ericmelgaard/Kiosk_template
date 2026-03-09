@@ -509,12 +509,21 @@ var IMSintegration;
             });
 
             $('#kiosk-content').html(`
-                <div class="kiosk-welcome-banner">
-                    <h1>Welcome to Our Menu</h1>
-                    <p>Tap any station below to explore our delicious offerings</p>
+                <div class="kiosk-navbar">
+                    <div class="kiosk-navbar-brand">Winona State University</div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div class="kiosk-navbar-user">Jack Kane</div>
+                        <div class="kiosk-navbar-date">Today</div>
+                    </div>
                 </div>
-                <div class="station-grid">
-                    ${stationCards}
+                <div class="kiosk-content-wrapper">
+                    <div class="kiosk-welcome-banner">
+                        <h1>Explore Our Stations</h1>
+                        <p>Choose a station to view available menu items</p>
+                    </div>
+                    <div class="station-grid">
+                        ${stationCards}
+                    </div>
                 </div>
             `);
         };
@@ -537,12 +546,20 @@ var IMSintegration;
             });
 
             $('#kiosk-content').html(`
-                <div class="kiosk-header">
-                    <button class="back-button" id="kiosk-back-btn">← Back to Stations</button>
-                    <h1>${category}</h1>
+                <div class="kiosk-navbar">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <button class="back-button" id="kiosk-back-btn">← Back</button>
+                        <div class="kiosk-navbar-brand">${category}</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 24px;">
+                        <div class="kiosk-navbar-user">Jack Kane</div>
+                        <div class="kiosk-navbar-date">Today</div>
+                    </div>
                 </div>
-                <div class="menu-items-grid">
-                    ${menuItemsHtml}
+                <div class="kiosk-content-wrapper">
+                    <div class="menu-items-grid">
+                        ${menuItemsHtml}
+                    </div>
                 </div>
                 <button class="scroll-top-btn" id="scroll-top-btn">↑</button>
             `);
@@ -703,28 +720,46 @@ var IMSintegration;
         MenuLayout.kioskItemTemplate = `
         <div class="kiosk-menu-item" data-item-index="{{index}}">
             <div class="item-name">
-                {{name}}{{comboName}}{{menuItemName}}
+                <span>{{name}}{{comboName}}{{menuItemName}}</span>
+                <span class="item-price">{{price}}</span>
+            </div>
+            <div class="item-description">{{description}}{{enticingDescription}}{{menuDescription}}</div>
+            <div class="item-footer">
+                <span class="item-calories">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path d="M13 7h-2v5.5l4.75 2.85.75-1.23-4-2.37V7z"/>
+                    </svg>
+                    {{calories}} cal
+                </span>
                 <div class="item-icons">
                 {{#icons}}
                     <img src="./{{fileName}}" class="nutrition-icon" onerror="this.onerror=null;this.remove();">
                 {{/icons}}
                 </div>
             </div>
-            <div class="item-description">{{description}}{{enticingDescription}}{{menuDescription}}</div>
-            <div class="item-footer">
-                <span class="item-calories">{{calories}} cal</span>
-                <span class="item-price">{{price}}</span>
-            </div>
         </div>`;
 
         MenuLayout.nutritionModalTemplate = `
         <div id="nutrition-modal-content">
             <div class="nutrition-modal-header">
-                <h2>Nutrition Facts</h2>
+                <h2>{{name}}</h2>
                 <button class="close-modal">&times;</button>
             </div>
             <div class="nutrition-label">
-                <h3>{{name}}</h3>
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                    <span style="color: #3b82f6; font-size: 18px; font-weight: 600;">{{price}}</span>
+                    <span style="color: #94a3b8;">{{calories}} calories</span>
+                    <span style="color: #94a3b8;">{{servingSize}}</span>
+                </div>
+                {{#icons.length}}
+                <div class="dietary-icons">
+                {{#icons}}
+                    <img src="./{{fileName}}" class="nutrition-icon" onerror="this.onerror=null;this.remove();">
+                {{/icons}}
+                </div>
+                {{/icons.length}}
+                <h3>Ingredients</h3>
                 <div class="serving-size">Serving Size: {{servingSize}}</div>
                 <div class="calories-section">
                     <div class="calories-line">
@@ -789,26 +824,92 @@ var IMSintegration;
                     <span>Potassium {{potassium}}mg</span>
                     <span>{{potassiumDV}}%</span>
                 </div>
-                <div class="daily-value-footer">
-                    * Percent Daily Values are based on a 2,000 calorie diet.
-                </div>
                 {{#ingredients}}
                 <div class="ingredients-section">
-                    <strong>Ingredients:</strong> {{ingredients}}
+                    {{ingredients}}
                 </div>
                 {{/ingredients}}
                 {{#hasAllergens}}
+                <h3 style="margin-top: 24px;">Allergens</h3>
                 <div class="allergens-section">
-                    <strong>Allergens:</strong> {{allergens}}
+                    {{allergens}}
                 </div>
                 {{/hasAllergens}}
-                {{#icons}}
-                <div class="dietary-icons">
-                    {{#icons}}
-                    <img src="./{{fileName}}" class="nutrition-icon" onerror="this.onerror=null;this.remove();">
-                    {{/icons}}
+                <h3 style="margin-top: 24px;">Nutrition Facts</h3>
+                <div style="background: white; border-radius: 8px; padding: 16px; margin-top: 12px;">
+                    <div style="font-size: 32px; font-weight: 700; color: #000; margin-bottom: 8px;">Nutrition Facts</div>
+                    <div style="border-bottom: 10px solid #000; padding-bottom: 4px; margin-bottom: 4px; font-size: 14px; color: #000;">
+                        Serving Size {{servingSize}}
+                    </div>
+                    <div style="border-bottom: 5px solid #000; padding: 6px 0; margin-bottom: 6px;">
+                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                            <span style="font-size: 28px; font-weight: 700; color: #000;">Calories</span>
+                            <span style="font-size: 42px; font-weight: 700; color: #000;">{{calories}}</span>
+                        </div>
+                    </div>
+                    <div style="text-align: right; font-size: 12px; font-weight: 700; border-bottom: 4px solid #000; padding: 4px 0; color: #000;">% Daily Value*</div>
+                    <div style="color: #000; font-size: 14px;">
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span><strong>Total Fat</strong> {{totalFat}}g</span>
+                            <span><strong>{{totalFatDV}}%</strong></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                            <span>Saturated Fat {{saturatedFat}}g</span>
+                            <span><strong>{{saturatedFatDV}}%</strong></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                            <span><em>Trans</em> Fat {{transFat}}g</span>
+                            <span></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span><strong>Cholesterol</strong> {{cholesterol}}mg</span>
+                            <span><strong>{{cholesterolDV}}%</strong></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span><strong>Sodium</strong> {{sodium}}mg</span>
+                            <span><strong>{{sodiumDV}}%</strong></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span><strong>Total Carbohydrate</strong> {{totalCarbohydrate}}g</span>
+                            <span><strong>{{totalCarbohydrateDV}}%</strong></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                            <span>Dietary Fiber {{dietaryFiber}}g</span>
+                            <span><strong>{{dietaryFiberDV}}%</strong></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 20px; border-bottom: 1px solid #999;">
+                            <span>Total Sugars {{totalSugars}}g</span>
+                            <span></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0 6px 40px; border-bottom: 1px solid #999; font-size: 13px;">
+                            <span>Includes {{addedSugars}}g Added Sugars</span>
+                            <span></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 8px solid #000;">
+                            <span><strong>Protein</strong> {{protein}}g</span>
+                            <span></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span>Vitamin D {{vitaminD}}mcg</span>
+                            <span>{{vitaminDDV}}%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span>Calcium {{calcium}}mg</span>
+                            <span>{{calciumDV}}%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #999;">
+                            <span>Iron {{iron}}mg</span>
+                            <span>{{ironDV}}%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 4px solid #000;">
+                            <span>Potassium {{potassium}}mg</span>
+                            <span>{{potassiumDV}}%</span>
+                        </div>
+                        <div style="font-size: 11px; padding-top: 8px;">
+                            * Percent Daily Values are based on a 2,000 calorie diet.
+                        </div>
+                    </div>
                 </div>
-                {{/icons}}
             </div>
         </div>`;
 
