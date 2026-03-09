@@ -412,7 +412,7 @@ var IMSintegration;
                     ingredients: ["Pizza dough", "Tomato sauce", "Mozzarella cheese", "Bell peppers", "Onions", "Mushrooms", "Olives"],
                     icons: [
                         { name: "vegetarian", fileName: "resources/icon_vegetarian.png" }
-                    ]
+                    ],
                     allergens: ["Wheat", "Milk"]
                 },
                 {
