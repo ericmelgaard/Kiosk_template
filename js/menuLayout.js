@@ -246,7 +246,12 @@ var IMSintegration;
             }
 
             _this.kioskMode = true;
-            _this.kioskData = integrationItems;
+
+            if (!integrationItems || integrationItems.length === 0) {
+                _this.kioskData = _this.getDemoData();
+            } else {
+                _this.kioskData = integrationItems;
+            }
 
             $('#kiosk-overlay').show();
             _this.applyKioskProtections();
@@ -256,6 +261,211 @@ var IMSintegration;
             if (typeof InactivityManager !== 'undefined') {
                 new InactivityManager(_this);
             }
+        };
+
+        MenuLayout.prototype.getDemoData = function () {
+            return [
+                {
+                    name: "Grilled Chicken Sandwich",
+                    category: "Grill Station",
+                    description: "Juicy grilled chicken breast with lettuce, tomato, and mayo on a toasted bun",
+                    price: "$8.99",
+                    calories: 520,
+                    hidden: false,
+                    servingSize: "1 sandwich (285g)",
+                    totalFat: 18,
+                    saturatedFat: 4,
+                    transFat: 0,
+                    cholesterol: 95,
+                    sodium: 890,
+                    totalCarbohydrate: 45,
+                    dietaryFiber: 3,
+                    totalSugars: 6,
+                    addedSugars: 2,
+                    protein: 38,
+                    vitaminD: 0,
+                    calcium: 120,
+                    iron: 3,
+                    potassium: 480,
+                    ingredients: ["Chicken breast", "Wheat bun", "Lettuce", "Tomato", "Mayonnaise", "Salt", "Pepper"],
+                    allergens: ["Wheat", "Egg", "Soy"]
+                },
+                {
+                    name: "Classic Cheeseburger",
+                    category: "Grill Station",
+                    description: "Angus beef patty with American cheese, pickles, onions, ketchup, and mustard",
+                    price: "$9.49",
+                    calories: 650,
+                    hidden: false,
+                    servingSize: "1 burger (320g)",
+                    totalFat: 32,
+                    saturatedFat: 14,
+                    transFat: 1,
+                    cholesterol: 110,
+                    sodium: 1180,
+                    totalCarbohydrate: 48,
+                    dietaryFiber: 2,
+                    totalSugars: 8,
+                    addedSugars: 6,
+                    protein: 35,
+                    vitaminD: 0,
+                    calcium: 280,
+                    iron: 4,
+                    potassium: 420,
+                    ingredients: ["Beef patty", "Wheat bun", "American cheese", "Pickles", "Onions", "Ketchup", "Mustard"],
+                    allergens: ["Wheat", "Milk", "Soy"]
+                },
+                {
+                    name: "Caesar Salad",
+                    category: "Salad Bar",
+                    description: "Crisp romaine lettuce with parmesan, croutons, and creamy Caesar dressing",
+                    price: "$7.99",
+                    calories: 320,
+                    hidden: false,
+                    servingSize: "1 bowl (245g)",
+                    totalFat: 24,
+                    saturatedFat: 6,
+                    transFat: 0,
+                    cholesterol: 35,
+                    sodium: 680,
+                    totalCarbohydrate: 18,
+                    dietaryFiber: 3,
+                    totalSugars: 2,
+                    addedSugars: 1,
+                    protein: 9,
+                    vitaminD: 0,
+                    calcium: 180,
+                    iron: 2,
+                    potassium: 340,
+                    ingredients: ["Romaine lettuce", "Parmesan cheese", "Croutons", "Caesar dressing", "Lemon juice"],
+                    allergens: ["Wheat", "Milk", "Egg", "Fish"]
+                },
+                {
+                    name: "Garden Salad",
+                    category: "Salad Bar",
+                    description: "Fresh mixed greens with tomatoes, cucumbers, carrots, and your choice of dressing",
+                    price: "$6.99",
+                    calories: 180,
+                    hidden: false,
+                    servingSize: "1 bowl (200g)",
+                    totalFat: 12,
+                    saturatedFat: 2,
+                    transFat: 0,
+                    cholesterol: 0,
+                    sodium: 320,
+                    totalCarbohydrate: 14,
+                    dietaryFiber: 4,
+                    totalSugars: 6,
+                    addedSugars: 2,
+                    protein: 3,
+                    vitaminD: 0,
+                    calcium: 80,
+                    iron: 1,
+                    potassium: 520,
+                    ingredients: ["Mixed greens", "Tomatoes", "Cucumbers", "Carrots", "Ranch dressing"],
+                    allergens: ["Milk", "Egg"]
+                },
+                {
+                    name: "Pepperoni Pizza",
+                    category: "Pizza Station",
+                    description: "Hand-tossed pizza with mozzarella cheese and pepperoni",
+                    price: "$3.99",
+                    calories: 285,
+                    hidden: false,
+                    servingSize: "2 slices (156g)",
+                    totalFat: 12,
+                    saturatedFat: 5,
+                    transFat: 0,
+                    cholesterol: 28,
+                    sodium: 720,
+                    totalCarbohydrate: 32,
+                    dietaryFiber: 2,
+                    totalSugars: 4,
+                    addedSugars: 2,
+                    protein: 13,
+                    vitaminD: 0,
+                    calcium: 220,
+                    iron: 2,
+                    potassium: 180,
+                    ingredients: ["Pizza dough", "Tomato sauce", "Mozzarella cheese", "Pepperoni", "Oregano"],
+                    allergens: ["Wheat", "Milk"]
+                },
+                {
+                    name: "Veggie Pizza",
+                    category: "Pizza Station",
+                    description: "Fresh vegetables on a bed of mozzarella and marinara sauce",
+                    price: "$3.49",
+                    calories: 245,
+                    hidden: false,
+                    servingSize: "2 slices (156g)",
+                    totalFat: 9,
+                    saturatedFat: 4,
+                    transFat: 0,
+                    cholesterol: 18,
+                    sodium: 580,
+                    totalCarbohydrate: 34,
+                    dietaryFiber: 3,
+                    totalSugars: 5,
+                    addedSugars: 2,
+                    protein: 10,
+                    vitaminD: 0,
+                    calcium: 200,
+                    iron: 2,
+                    potassium: 280,
+                    ingredients: ["Pizza dough", "Tomato sauce", "Mozzarella cheese", "Bell peppers", "Onions", "Mushrooms", "Olives"],
+                    allergens: ["Wheat", "Milk"]
+                },
+                {
+                    name: "Chicken Stir Fry",
+                    category: "Asian Station",
+                    description: "Tender chicken with mixed vegetables in savory sauce over rice",
+                    price: "$8.49",
+                    calories: 420,
+                    hidden: false,
+                    servingSize: "1 serving (340g)",
+                    totalFat: 14,
+                    saturatedFat: 3,
+                    transFat: 0,
+                    cholesterol: 75,
+                    sodium: 980,
+                    totalCarbohydrate: 48,
+                    dietaryFiber: 4,
+                    totalSugars: 8,
+                    addedSugars: 6,
+                    protein: 28,
+                    vitaminD: 0,
+                    calcium: 60,
+                    iron: 3,
+                    potassium: 620,
+                    ingredients: ["Chicken", "Rice", "Broccoli", "Carrots", "Soy sauce", "Garlic", "Ginger"],
+                    allergens: ["Soy", "Wheat"]
+                },
+                {
+                    name: "Vegetable Lo Mein",
+                    category: "Asian Station",
+                    description: "Stir-fried noodles with fresh vegetables in sesame oil",
+                    price: "$7.49",
+                    calories: 380,
+                    hidden: false,
+                    servingSize: "1 serving (310g)",
+                    totalFat: 11,
+                    saturatedFat: 2,
+                    transFat: 0,
+                    cholesterol: 0,
+                    sodium: 840,
+                    totalCarbohydrate: 58,
+                    dietaryFiber: 5,
+                    totalSugars: 6,
+                    addedSugars: 4,
+                    protein: 12,
+                    vitaminD: 0,
+                    calcium: 45,
+                    iron: 3,
+                    potassium: 380,
+                    ingredients: ["Lo mein noodles", "Cabbage", "Carrots", "Bean sprouts", "Soy sauce", "Sesame oil"],
+                    allergens: ["Wheat", "Soy", "Sesame"]
+                }
+            ];
         };
 
         MenuLayout.prototype.applyKioskProtections = function () {
@@ -306,8 +516,9 @@ var IMSintegration;
             });
 
             $('#kiosk-content').html(`
-                <div class="kiosk-header">
-                    <h1>Select a Station</h1>
+                <div class="kiosk-welcome-banner">
+                    <h1>Welcome to Our Menu</h1>
+                    <p>Tap any station below to explore our delicious offerings</p>
                 </div>
                 <div class="station-grid">
                     ${stationCards}

@@ -4,9 +4,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     z-index: 10000;
     overflow: hidden;
+    display: none !important;
+}
+
+#kiosk-overlay[style*="display: block"],
+#kiosk-overlay[style*="display:block"] {
+    display: flex !important;
+    flex-direction: column;
 }
 
 #kiosk-content {
@@ -17,6 +24,28 @@
     box-sizing: border-box;
 }
 
+.kiosk-welcome-banner {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.kiosk-welcome-banner h1 {
+    font-size: 56px;
+    color: #667eea;
+    margin: 0 0 10px 0;
+    font-weight: 800;
+}
+
+.kiosk-welcome-banner p {
+    font-size: 24px;
+    color: #555;
+    margin: 0;
+}
+
 .kiosk-header {
     text-align: center;
     margin-bottom: 30px;
@@ -25,9 +54,10 @@
 
 .kiosk-header h1 {
     font-size: 48px;
-    color: #2c3e50;
+    color: white;
     margin: 0;
     font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .back-button {
@@ -79,9 +109,9 @@
 }
 
 .station-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     color: white;
 }
 
