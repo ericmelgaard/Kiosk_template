@@ -356,7 +356,11 @@ var IMSintegration;
                     iron: 1,
                     potassium: 520,
                     ingredients: ["Mixed greens", "Tomatoes", "Cucumbers", "Carrots", "Ranch dressing"],
-                    allergens: ["Milk", "Egg"]
+                    allergens: ["Milk", "Egg"],
+                    icons: [
+                        { name: "vegetarian", fileName: "resources/icon_vegetarian.png" },
+                        { name: "withoutgluten", fileName: "resources/icon_withoutgluten.png" }
+                    ]
                 },
                 {
                     name: "Pepperoni Pizza",
@@ -406,6 +410,9 @@ var IMSintegration;
                     iron: 2,
                     potassium: 280,
                     ingredients: ["Pizza dough", "Tomato sauce", "Mozzarella cheese", "Bell peppers", "Onions", "Mushrooms", "Olives"],
+                    icons: [
+                        { name: "vegetarian", fileName: "resources/icon_vegetarian.png" }
+                    ]
                     allergens: ["Wheat", "Milk"]
                 },
                 {
@@ -597,16 +604,27 @@ var IMSintegration;
             };
 
             if (typeof NutritionReference !== 'undefined') {
-                modalData.totalFatDV = NutritionReference.calculateDailyValue('total_fat', item.totalFat);
-                modalData.saturatedFatDV = NutritionReference.calculateDailyValue('saturated_fat', item.saturatedFat);
-                modalData.cholesterolDV = NutritionReference.calculateDailyValue('cholesterol', item.cholesterol);
-                modalData.sodiumDV = NutritionReference.calculateDailyValue('sodium', item.sodium);
-                modalData.totalCarbohydrateDV = NutritionReference.calculateDailyValue('total_carbohydrate', item.totalCarbohydrate);
-                modalData.dietaryFiberDV = NutritionReference.calculateDailyValue('dietary_fiber', item.dietaryFiber);
-                modalData.vitaminDDV = NutritionReference.calculateDailyValue('vitamin_d', item.vitaminD);
-                modalData.calciumDV = NutritionReference.calculateDailyValue('calcium', item.calcium);
-                modalData.ironDV = NutritionReference.calculateDailyValue('iron', item.iron);
-                modalData.potassiumDV = NutritionReference.calculateDailyValue('potassium', item.potassium);
+                modalData.totalFatDV = NutritionReference.calculateDailyValue('total_fat', item.totalFat) || 0;
+                modalData.saturatedFatDV = NutritionReference.calculateDailyValue('saturated_fat', item.saturatedFat) || 0;
+                modalData.cholesterolDV = NutritionReference.calculateDailyValue('cholesterol', item.cholesterol) || 0;
+                modalData.sodiumDV = NutritionReference.calculateDailyValue('sodium', item.sodium) || 0;
+                modalData.totalCarbohydrateDV = NutritionReference.calculateDailyValue('total_carbohydrate', item.totalCarbohydrate) || 0;
+                modalData.dietaryFiberDV = NutritionReference.calculateDailyValue('dietary_fiber', item.dietaryFiber) || 0;
+                modalData.vitaminDDV = NutritionReference.calculateDailyValue('vitamin_d', item.vitaminD) || 0;
+                modalData.calciumDV = NutritionReference.calculateDailyValue('calcium', item.calcium) || 0;
+                modalData.ironDV = NutritionReference.calculateDailyValue('iron', item.iron) || 0;
+                modalData.potassiumDV = NutritionReference.calculateDailyValue('potassium', item.potassium) || 0;
+            } else {
+                modalData.totalFatDV = 0;
+                modalData.saturatedFatDV = 0;
+                modalData.cholesterolDV = 0;
+                modalData.sodiumDV = 0;
+                modalData.totalCarbohydrateDV = 0;
+                modalData.dietaryFiberDV = 0;
+                modalData.vitaminDDV = 0;
+                modalData.calciumDV = 0;
+                modalData.ironDV = 0;
+                modalData.potassiumDV = 0;
             }
 
             $('#nutrition-modal').html(Mustache.to_html(MenuLayout.nutritionModalTemplate, modalData));
@@ -734,7 +752,7 @@ var IMSintegration;
                 </span>
                 <div class="item-icons">
                 {{#icons}}
-                    <img src="./{{fileName}}" class="nutrition-icon" onerror="this.onerror=null;this.remove();">
+                    <img src="{{fileName}}" class="nutrition-icon" title="{{name}}" onerror="this.onerror=null;this.style.display='none';">
                 {{/icons}}
                 </div>
             </div>
@@ -755,7 +773,7 @@ var IMSintegration;
                 {{#icons.length}}
                 <div class="dietary-icons">
                 {{#icons}}
-                    <img src="./{{fileName}}" class="nutrition-icon" title="{{name}}" onerror="this.onerror=null;this.remove();">
+                    <img src="{{fileName}}" class="nutrition-icon" title="{{name}}" onerror="this.onerror=null;this.style.display='none';">
                 {{/icons}}
                 </div>
                 {{/icons.length}}
