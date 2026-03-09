@@ -747,84 +747,20 @@ var IMSintegration;
                 <button class="close-modal">&times;</button>
             </div>
             <div class="nutrition-label">
-                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
-                    <span style="color: #3b82f6; font-size: 18px; font-weight: 600;">{{price}}</span>
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span style="color: #3b82f6; font-size: 18px; font-weight: 600;">$0.00</span>
                     <span style="color: #94a3b8;">{{calories}} calories</span>
                     <span style="color: #94a3b8;">{{servingSize}}</span>
                 </div>
                 {{#icons.length}}
                 <div class="dietary-icons">
                 {{#icons}}
-                    <img src="./{{fileName}}" class="nutrition-icon" onerror="this.onerror=null;this.remove();">
+                    <img src="./{{fileName}}" class="nutrition-icon" title="{{name}}" onerror="this.onerror=null;this.remove();">
                 {{/icons}}
                 </div>
                 {{/icons.length}}
-                <h3>Ingredients</h3>
-                <div class="serving-size">Serving Size: {{servingSize}}</div>
-                <div class="calories-section">
-                    <div class="calories-line">
-                        <span class="calories-label">Calories</span>
-                        <span class="calories-value">{{calories}}</span>
-                    </div>
-                </div>
-                <div class="daily-value-header">% Daily Value*</div>
-                <div class="nutrient-row">
-                    <span><strong>Total Fat</strong> {{totalFat}}g</span>
-                    <span><strong>{{totalFatDV}}%</strong></span>
-                </div>
-                <div class="nutrient-row indent">
-                    <span>Saturated Fat {{saturatedFat}}g</span>
-                    <span><strong>{{saturatedFatDV}}%</strong></span>
-                </div>
-                <div class="nutrient-row indent">
-                    <span>Trans Fat {{transFat}}g</span>
-                    <span></span>
-                </div>
-                <div class="nutrient-row">
-                    <span><strong>Cholesterol</strong> {{cholesterol}}mg</span>
-                    <span><strong>{{cholesterolDV}}%</strong></span>
-                </div>
-                <div class="nutrient-row">
-                    <span><strong>Sodium</strong> {{sodium}}mg</span>
-                    <span><strong>{{sodiumDV}}%</strong></span>
-                </div>
-                <div class="nutrient-row">
-                    <span><strong>Total Carbohydrate</strong> {{totalCarbohydrate}}g</span>
-                    <span><strong>{{totalCarbohydrateDV}}%</strong></span>
-                </div>
-                <div class="nutrient-row indent">
-                    <span>Dietary Fiber {{dietaryFiber}}g</span>
-                    <span><strong>{{dietaryFiberDV}}%</strong></span>
-                </div>
-                <div class="nutrient-row indent">
-                    <span>Total Sugars {{totalSugars}}g</span>
-                    <span></span>
-                </div>
-                <div class="nutrient-row indent2">
-                    <span>Includes {{addedSugars}}g Added Sugars</span>
-                    <span></span>
-                </div>
-                <div class="nutrient-row">
-                    <span><strong>Protein</strong> {{protein}}g</span>
-                    <span></span>
-                </div>
-                <div class="nutrient-row">
-                    <span>Vitamin D {{vitaminD}}mcg</span>
-                    <span>{{vitaminDDV}}%</span>
-                </div>
-                <div class="nutrient-row">
-                    <span>Calcium {{calcium}}mg</span>
-                    <span>{{calciumDV}}%</span>
-                </div>
-                <div class="nutrient-row">
-                    <span>Iron {{iron}}mg</span>
-                    <span>{{ironDV}}%</span>
-                </div>
-                <div class="nutrient-row">
-                    <span>Potassium {{potassium}}mg</span>
-                    <span>{{potassiumDV}}%</span>
-                </div>
                 {{#ingredients}}
+                <h3>Ingredients</h3>
                 <div class="ingredients-section">
                     {{ingredients}}
                 </div>
