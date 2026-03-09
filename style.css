@@ -13,8 +13,8 @@ body, .background, .asset-wrapper {
     background: #314959;
     margin: 0;
     padding: 0;
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
