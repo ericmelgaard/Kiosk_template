@@ -1,0 +1,529 @@
+#kiosk-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    z-index: 10000;
+    overflow: hidden;
+}
+
+#kiosk-content {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.kiosk-header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.kiosk-header h1 {
+    font-size: 48px;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 700;
+}
+
+.back-button {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.back-button:hover {
+    background: #2980b9;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.back-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.station-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.station-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.station-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.station-card:active {
+    transform: translateY(-4px);
+}
+
+.station-card h2 {
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    transition: color 0.3s ease;
+}
+
+.station-card:hover h2 {
+    color: white;
+}
+
+.station-card .item-count {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.station-card:hover .item-count {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.menu-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.kiosk-menu-item {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 150px;
+}
+
+.kiosk-menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.kiosk-menu-item:active {
+    transform: translateY(-2px);
+}
+
+.kiosk-menu-item .item-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.kiosk-menu-item .item-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.kiosk-menu-item .nutrition-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.kiosk-menu-item .item-description {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    min-height: 48px;
+}
+
+.kiosk-menu-item .item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.kiosk-menu-item .item-calories {
+    color: #e74c3c;
+}
+
+.kiosk-menu-item .item-price {
+    color: #27ae60;
+    font-size: 22px;
+}
+
+#nutrition-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 11000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nutrition-modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.nutrition-modal-header {
+    background: #3498db;
+    color: white;
+    padding: 20px 25px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    user-select: none;
+}
+
+.nutrition-modal-header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.close-modal {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.close-modal:hover {
+    transform: scale(1.2);
+}
+
+.close-modal:active {
+    transform: scale(0.9);
+}
+
+.nutrition-label {
+    padding: 25px;
+    font-family: Arial, sans-serif;
+}
+
+.nutrition-label h3 {
+    font-size: 24px;
+    margin: 0 0 15px 0;
+    color: #2c3e50;
+}
+
+.serving-size {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 10px solid #000;
+}
+
+.calories-section {
+    border-bottom: 5px solid #000;
+    padding: 5px 0;
+}
+
+.calories-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calories-label {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.calories-value {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.daily-value-header {
+    font-size: 14px;
+    text-align: right;
+    padding: 5px 0;
+    border-bottom: 4px solid #000;
+    font-weight: 700;
+}
+
+.nutrient-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.nutrient-row.indent {
+    padding-left: 20px;
+}
+
+.nutrient-row.indent2 {
+    padding-left: 40px;
+}
+
+.daily-value-footer {
+    font-size: 12px;
+    padding: 10px 0;
+    border-top: 5px solid #000;
+    margin-top: 10px;
+}
+
+.ingredients-section,
+.allergens-section {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.allergens-section {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+}
+
+.dietary-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.dietary-icons .nutrition-icon {
+    width: 40px;
+    height: 40px;
+}
+
+#inactivity-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 12000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning-content {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+    max-width: 500px;
+}
+
+.warning-content h2 {
+    font-size: 36px;
+    color: #2c3e50;
+    margin: 0 0 30px 0;
+}
+
+.countdown-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
+}
+
+.countdown-svg {
+    transform: rotate(-90deg);
+}
+
+.countdown-bg {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 8;
+}
+
+.countdown-progress {
+    fill: none;
+    stroke: #e74c3c;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.countdown-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+.warning-content p {
+    font-size: 20px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+.warning-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 18px 36px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    min-width: 150px;
+}
+
+.primary-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #229954;
+    transform: scale(1.05);
+}
+
+.primary-btn:active {
+    transform: scale(0.95);
+}
+
+.secondary-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: #7f8c8d;
+    transform: scale(1.05);
+}
+
+.secondary-btn:active {
+    transform: scale(0.95);
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.scroll-top-btn:hover {
+    background: #2980b9;
+    transform: scale(1.1);
+}
+
+.scroll-top-btn:active {
+    transform: scale(0.9);
+}
+
+@media (max-width: 768px) {
+    .station-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .menu-items-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .kiosk-header h1 {
+        font-size: 32px;
+    }
+
+    .back-button {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+
+    #nutrition-modal-content {
+        max-width: 95%;
+        margin: 20px;
+    }
+
+    .warning-content {
+        padding: 30px;
+        margin: 20px;
+    }
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+button,
+.station-card,
+.kiosk-menu-item {
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.3);
+}
