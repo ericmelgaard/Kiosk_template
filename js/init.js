@@ -62,11 +62,11 @@ var Duration = "";
 var zoneHeight = "";
 var zoneWidth = "";
 var Partner_API = "webtrition"; 
-var Brand = "1629"; //business unit or sap code
-var Establishment = "5824"; //location or venue
+var Brand = "71984"; //business unit or sap code
+var Establishment = "72019"; //location or venue
 var apiKey = "";
 //yyyy-mm-dd ex.2026-02-23
-var dateToRequest = "2026-02-26";
+var dateToRequest = "";
 var devSiteKeys = ["6091", "4873", "4907", "5448", "4756", "6820"]
 //end development & preview values
 //global scope variables
