@@ -248,7 +248,7 @@ var IMSintegration;
 
             $('#kiosk-overlay').show();
             _this.applyKioskProtections();
-            _this.renderStationView();
+            _this.renderWelcomeScreen();
             _this.setupKioskEventHandlers();
 
             if (typeof InactivityManager !== 'undefined') {
@@ -489,6 +489,29 @@ var IMSintegration;
             }
         };
 
+        MenuLayout.prototype.renderWelcomeScreen = function () {
+            var _this = this;
+            _this.currentView = 'welcome';
+
+            $('#kiosk-content').html(`
+                <div class="welcome-screen">
+                    <div class="welcome-animation-container">
+                        <div class="welcome-pulse-circle"></div>
+                        <div class="welcome-pulse-circle pulse-delay-1"></div>
+                        <div class="welcome-pulse-circle pulse-delay-2"></div>
+                        <div class="welcome-icon-wrapper">
+                            <svg class="welcome-touch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h1 class="welcome-title">Welcome!</h1>
+                    <p class="welcome-subtitle">Touch anywhere to explore our menu</p>
+                    <div class="welcome-hand-icon">👆</div>
+                </div>
+            `);
+        };
+
         MenuLayout.prototype.renderStationView = function () {
             var _this = this;
             _this.currentView = 'landing';
@@ -690,6 +713,13 @@ var IMSintegration;
 
         MenuLayout.prototype.setupKioskEventHandlers = function () {
             var _this = this;
+
+            $(document).on('click touchstart', '.welcome-screen', function(e) {
+                e.preventDefault();
+                if (_this.currentView === 'welcome') {
+                    _this.renderStationView();
+                }
+            });
 
             $(document).on('click', '.station-card', function() {
                 var category = $(this).data('category');
