@@ -48,7 +48,7 @@ var InactivityManager = (function () {
     InactivityManager.prototype.resetTimer = function () {
         var _this = this;
 
-        if (_this.menuLayout.currentView === 'landing') {
+        if (_this.menuLayout.currentView === 'welcome' || _this.menuLayout.currentView === 'landing') {
             _this.clearTimers();
             return;
         }
@@ -109,7 +109,7 @@ var InactivityManager = (function () {
         $('#inactivity-warning').hide();
         $('#nutrition-modal').hide();
         _this.clearTimers();
-        _this.menuLayout.renderStationView();
+        _this.menuLayout.renderWelcomeScreen();
     };
 
     InactivityManager.prototype.clearTimers = function () {
