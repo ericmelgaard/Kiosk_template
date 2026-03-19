@@ -248,7 +248,7 @@ var IMSintegration;
 
             $('#kiosk-overlay').show();
             _this.applyKioskProtections();
-            _this.renderStationView();
+            _this.renderSplashScreen();
             _this.setupKioskEventHandlers();
 
             if (typeof InactivityManager !== 'undefined') {
@@ -489,6 +489,43 @@ var IMSintegration;
             }
         };
 
+        MenuLayout.prototype.renderSplashScreen = function () {
+            var _this = this;
+            _this.currentView = 'splash';
+
+            var items = _this.kioskData.filter(function (item) {
+                return !item.hidden;
+            });
+
+            var itemsByCategory = {};
+            items.forEach(function(item) {
+                if (!itemsByCategory[item.category]) {
+                    itemsByCategory[item.category] = [];
+                }
+                itemsByCategory[item.category].push(item);
+            });
+
+            var brandCards = '';
+            Object.keys(itemsByCategory).forEach(function(category) {
+                var cardData = {
+                    category: category
+                };
+                brandCards += Mustache.to_html(MenuLayout.brandCardTemplate, cardData);
+            });
+
+            $('#kiosk-content').html(`
+                <div class="splash-screen">
+                    <div class="splash-content">
+                        <h1 class="splash-title">Nutrition Information Kiosk</h1>
+                        <p class="splash-subtitle">Select a brand below to view menu items and nutritional values</p>
+                        <div class="brand-selection-grid">
+                            ${brandCards}
+                        </div>
+                    </div>
+                </div>
+            `);
+        };
+
         MenuLayout.prototype.renderStationView = function () {
             var _this = this;
             _this.currentView = 'landing';
@@ -691,6 +728,11 @@ var IMSintegration;
         MenuLayout.prototype.setupKioskEventHandlers = function () {
             var _this = this;
 
+            $(document).on('click', '.brand-card', function() {
+                var category = $(this).data('category');
+                _this.renderStationView();
+            });
+
             $(document).on('click', '.station-card', function() {
                 var category = $(this).data('category');
                 _this.renderBrowsingView(category);
@@ -739,6 +781,11 @@ var IMSintegration;
 
             $('#scroll-top-btn').hide();
         };
+
+        MenuLayout.brandCardTemplate = `
+        <div class="brand-card" data-category="{{category}}">
+            <h2>{{category}}</h2>
+        </div>`;
 
         MenuLayout.stationCardTemplate = `
         <div class="station-card" data-category="{{category}}">
